@@ -81,6 +81,7 @@ filtered_verses = []
 
 for verse in verses:
   for word in verse:
+    words_list.append(word)
     if word not in arb_stopwords:
       if word not in arabic_stopwords_list:
         if word not in stopwords_list:
@@ -117,10 +118,11 @@ def stemmingـprocess(word):
 # Save list of words in JSON formate
 def build_wordsـdictionary():
   id = 1
+  words_list_dic =[]
   for verse in verses:
     for word in verse:
-      if word not in words_list:
-        words_list.append(word)
+      if word not in words_list_dic:
+        words_list_dic.append(word)
         words_dictionary[id] = word
         id = id + 1
       else:
@@ -262,6 +264,7 @@ def construct_concordances_dataset():
     verses_list = word_concordance(i)
     concordances_dictionary[i] = verses_list
     verses_list = []
+
   with open(concordances_dataset_json, 'a', encoding='utf8') as file:
     json.dump(concordances_dictionary, file, ensure_ascii=False, indent=4)
 
