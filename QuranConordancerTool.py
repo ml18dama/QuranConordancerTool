@@ -58,7 +58,7 @@ verses_concordances_list = []
 _quran_data = pd.read_csv(quran_corpus, encoding = 'UTF-8', sep='|', header='infer');
 
 # Text Pre-Processing (Normalization Step): Remove diacrtics from the verses to simplify the corpus
-clean_text = _quran_data['verse'].map(lambda x: re.sub('[ًٌٍَُِّٰۘۚۙ~ْۖۗ]', '', x))
+clean_text = _quran_data['verse'].map(lambda x: re.sub('[ًٌٍَُِّٰۘۚۙ~ْۖۗ]', '', x))
 
 # Text Pre-Processing (Tokenization Step): Tokinize words from verses and vectorize them
 tokenized_text = clean_text.str.split()
@@ -81,7 +81,6 @@ filtered_verses = []
 
 for verse in verses:
   for word in verse:
-    #words_list.append(word)
     if word not in arb_stopwords:
       if word not in arabic_stopwords_list:
         if word not in stopwords_list:
